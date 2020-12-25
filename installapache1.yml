@@ -1,0 +1,17 @@
+---
+- name: install tomcat
+  hosts: tomcat
+  become: yes
+  tasks: 
+    - name: update ubuntu packages and install java
+      apt: 
+        name: openjdk-8-jdk
+        update_cache: true
+        state: present
+    - name: install apachetomcat version 9
+      unarchive:
+         src: https://downloads.apache.org/tomcat/tomcat-9/v9.0.41/bin/apache-tomcat-9.0.41.tar.gz
+         dest: /tmp
+    
+      
+            
