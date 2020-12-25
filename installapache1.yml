@@ -19,7 +19,7 @@
          remote_src: yes
     - name: changing owner
       file:
-        path: /tmp/apache-tomcat-9.0.41/bin
+        path: /tmp/apache-tomcat-9.0.41"{{/bin/}}"
         owner: devops
         group: devops
         mode: '0755'
