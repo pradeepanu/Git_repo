@@ -14,15 +14,17 @@
          dest: /tmp
     - name: unzip the tar file
       unarchive:
-         src: /tmp/pache-tomcat-9.0.41.tar.gz
+         src: /tmp/apache-tomcat-9.0.41.tar.gz
          dest: /tmp/
          remote_src: yes
     - name: changing owner
       file:
-        path: /tmp/pache-tomcat-9.0.41/bin
+        path: /tmp/apache-tomcat-9.0.41/bin
         owner: devops
         group: devops
         mode: '0755'
+    - name: starting tomcat
+      shell: /tmp/apache-tomcat-9.0.41/bin/startup.sh
         
 
 
