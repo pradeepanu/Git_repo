@@ -10,13 +10,20 @@
         state: present
     - name: install apachetomcat version 9
       get_url:
-         src: https://downloads.apache.org/tomcat/tomcat-9/v9.0.41/bin/apache-tomcat-9.0.41.tar.gz
+         url: https://downloads.apache.org/tomcat/tomcat-9/v9.0.41/bin/apache-tomcat-9.0.41.tar.gz
          dest: /tmp
     - name: unzip the tar file
       unarchive:
          src: /tmp/pache-tomcat-9.0.41.tar.gz
          dest: /tmp/
          remote_src: yes
+    - name: changing owner
+      file:
+        path: /tmp/pache-tomcat-9.0.41/bin
+        owner: devops
+        group: devops
+        mode: '0755'
+        
 
 
     
