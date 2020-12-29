@@ -5,19 +5,22 @@
   vars: 
     - tomcat_pac: https://downloads.apache.org/tomcat/tomcat-9/v9.0.41/bin/apache-tomcat-9.0.41.tar.gz
     - tomcat_path: /tmp/apache-tomcat-9.0.41
-    - fil_ow: devops
-    - fil_gr: devops
+    - fil_ow: tomcat
+    
   tasks:
     - name: install jdk
       apt: 
         name: openjk-8-jdk
         state: present
         update_cache: yes
-    - name: file permission
-      file:
-        owner: "{{ fil_ow }}"
-        group: "{{ fil_gr }}"
-        mode: 0775
+    - name: user tomcat  
+      user:
+        name: "{{ fil_ow }}"
+        home: /opt/tomcat
+        group: "{{ fil_ow }}"
+        shell: /bin/false
+        state: present
+
 
     - name: Download tomcat
       get_url: 
