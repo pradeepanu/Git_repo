@@ -1,0 +1,9 @@
+--- 
+- name: copy the files
+  hosts: all
+  become: yes
+  tasks:
+    - name: files copying 
+	  copy:
+	    src: /tmp/properties
+		dest: /opt/
