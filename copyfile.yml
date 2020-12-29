@@ -5,6 +5,11 @@
   var: 
     pradeep: devops
   tasks:
+    - name: copy directory
+      copy:
+        src: /opt/properties/
+        remote_src: yes
+        backup: yes
     - name: copy properties
       copy: 
         src: /tmp/properties
