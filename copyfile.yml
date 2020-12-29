@@ -6,11 +6,11 @@
     pradeep: devops
   tasks:
     - name: copy properties
-      copy: 
-        src: /tmp/properties
-        dest: /opt/properties
+      copy:
+        src: /tmp/properties/
+        dest: /opt/properties/
         owner: pradeep
         group: pradeep
         remote_src: yes
-        mode: 0755
         backup: yes
+        mode: 0775
