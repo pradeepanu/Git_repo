@@ -4,25 +4,24 @@
   become: yes
   vars: 
     - tomcat_pac: https://downloads.apache.org/tomcat/tomcat-9/v9.0.41/bin/apache-tomcat-9.0.41.tar.gz
-    - tomcat_path: /tmp/apache-tomcat-9.0.41
+    - tomcat_path: /tmp/apache-tomcat-9.0.41.tar.gz
     - fil_ow: tomcat
     
   tasks:
     - name: install jdk
       apt: 
-        name: openjk-8-jdk
+        name: openjdk-8-jdk
         state: present
         update_cache: yes
-    - name: user tomcat  
-      user:
-        name: "{{ fil_ow }}"
-        home: /opt/tomcat
-        group: "{{ fil_ow }}"
-        shell: /bin/false
-        state: present
+    
 
 
     - name: Download tomcat
       get_url: 
         url: "{{ tomcat_pac }}"
         dest: "{{ tomcat_path }}"
+    - name: extract tar file
+      unarchive:
+        src: "{{ tomcat_path }}"
+        dest: /opt/tomcat/
+
