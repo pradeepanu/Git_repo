@@ -4,6 +4,6 @@
   become: yes
   tasks:
     - name: files copying 
-	  copy:
-	    src: /tmp/properties
-		dest: /opt/
+	    copy:
+        src: /tmp/properties
+        dest: /opt/
