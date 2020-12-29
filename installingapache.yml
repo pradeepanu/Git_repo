@@ -1,27 +1,32 @@
---- 
+---
 - name: Apache Tomcat
   hosts: all
   become: yes
-  vars: 
+  vars:
     - tomcat_pac: https://downloads.apache.org/tomcat/tomcat-9/v9.0.41/bin/apache-tomcat-9.0.41.tar.gz
-    - tomcat_path: /tmp/apache-tomcat-9.0.41.tar.gz
+    - tomcat_path: /tmp/apache-tomcat-9.0.41.tar
     - fil_ow: tomcat
-    
+
   tasks:
     - name: install jdk
-      apt: 
+      apt:
         name: openjdk-8-jdk
         state: present
         update_cache: yes
-    
-
-
     - name: Download tomcat
-      get_url: 
+      get_url:
         url: "{{ tomcat_pac }}"
         dest: "{{ tomcat_path }}"
     - name: extract tar file
       unarchive:
         src: "{{ tomcat_path }}"
-        dest: /opt/tomcat/
-
+        dest: /opt/tomcat
+        remote_src: yes
+    - name : changing permission
+      user:
+        name: tomcat
+        create_home: yes
+        home: /opt/tomcat
+        group: tomcat
+        mode: 0775
+  
