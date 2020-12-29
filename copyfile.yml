@@ -2,19 +2,10 @@
 - name: copy the files
   hosts: all
   become: yes
-  var: 
-    pradeep: devops
   tasks:
     - name: copy directory
       copy:
         src: /opt/properties/
         remote_src: yes
         backup: yes
-    - name: copy properties
-      copy: 
-        src: /tmp/properties
-        dest: /opt/
-        owner: pradeep
-        group: pradeep
-        mode: 0755
-        backup: yes
+    
