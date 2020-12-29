@@ -3,7 +3,10 @@
   hosts: all
   become: yes
   tasks:
-    - name: files copying 
-	    copy:
+    - name: copy properties
+      copy: 
         src: /tmp/properties
         dest: /opt/
+        owner: devops
+        group: devops
+        mod: 0755
